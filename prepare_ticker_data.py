@@ -154,20 +154,16 @@ def download_data(tickers, start_date, end_date, cache_file='data_cache_pure_sco
 def slice_data_package(data_package, end_date):
     print(f"\n数据已从缓存加载，现在将其截取到决策日: {end_date}...")
     
-    # 确保 end_date 是 pandas 的 datetime 对象
     end_date_dt = pd.to_datetime(end_date)
     
-    # 从原始数据包中截取价格和交易量
-    # 只保留索引（日期）小于或等于 end_date_dt 的行
     sliced_prices = data_package['prices'][data_package['prices'].index <= end_date_dt]
     sliced_volumes = data_package['volumes'][data_package['volumes'].index <= end_date_dt]
     
-    # 创建一个新的、截取过的数据包
-    # 注意：基本面数据是“时点”数据，在本次下载中是固定的，所以不需要截取，直接沿用
     sliced_data_package = {
         "prices": sliced_prices,
         "volumes": sliced_volumes,
         "fundamentals": data_package['fundamentals'] 
     }
     
+
     return sliced_data_package
