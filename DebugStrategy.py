@@ -261,9 +261,6 @@ def run_walk_forward_backtest(data_pkg, backtest_params, ml_params):
 
 
 def analyze_backtest_results(results_df):
-    """
-    计算并打印回测结果的关键性能指标。
-    """
     if results_df is None or results_df.empty:
         print("结果为空，无法进行分析。")
         return
@@ -323,3 +320,4 @@ if __name__ == '__main__':
 
         backtest_results = run_walk_forward_backtest(data_pkg, backtest_params, ml_params)
         analyze_backtest_results(backtest_results)
+
